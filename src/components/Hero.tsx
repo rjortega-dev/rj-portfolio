@@ -38,7 +38,7 @@ export default function Hero() {
 
         <div style={{ display: 'flex', gap: '10px', marginBottom: '44px' }}>
           <a
-            href="https://github.com/rj-ortega"
+            href="https://github.com/rjortega-dev/"
             target="_blank"
             rel="noreferrer"
             style={{ background: '#6366f1', color: '#fff', padding: '9px 20px', borderRadius: '8px', fontSize: '13px', fontWeight: 600 }}
