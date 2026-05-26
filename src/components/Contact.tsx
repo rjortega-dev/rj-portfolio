@@ -1,37 +1,60 @@
 export default function Contact() {
   return (
-    <section id="contact" style={{ padding: '80px 2.5rem 120px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-        <span style={{ color: '#6366f1', fontSize: '11px', fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+    <section id="contact" style={{ padding: "80px 2.5rem 120px" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <span
+          style={{
+            color: "#6366f1",
+            fontSize: "11px",
+            fontWeight: 600,
+            letterSpacing: "1.5px",
+            textTransform: "uppercase",
+          }}
+        >
           Contact
         </span>
-        <div style={{ width: '32px', height: '1px', background: '#21262d' }} />
+        <div style={{ width: "32px", height: "1px", background: "#21262d" }} />
       </div>
 
-      <h2 style={{ fontSize: '26px', fontWeight: 700, color: '#e2e8f0', letterSpacing: '-0.5px', marginBottom: '8px' }}>
+      <h2
+        style={{
+          fontSize: "26px",
+          fontWeight: 700,
+          color: "#e2e8f0",
+          letterSpacing: "-0.5px",
+          marginBottom: "8px",
+        }}
+      >
         Let's talk
       </h2>
 
-      <p style={{ fontSize: '14px', color: '#8b949e', marginBottom: '28px' }}>
+      <p style={{ fontSize: "14px", color: "#8b949e", marginBottom: "28px" }}>
         Open to roles in software engineering and data analytics.
       </p>
 
-      <div style={{ display: 'flex', gap: '12px' }}>
+      <div style={{ display: "flex", gap: "12px" }}>
         <a
           href="mailto:rikrdo.ortega@gmail.com"
           style={{
-            background: 'transparent',
-            color: '#e2e8f0',
-            border: '1px solid #21262d',
-            padding: '11px 22px',
-            borderRadius: '8px',
-            fontSize: '13px',
+            background: "transparent",
+            color: "#e2e8f0",
+            border: "1px solid #21262d",
+            padding: "11px 22px",
+            borderRadius: "8px",
+            fontSize: "13px",
             fontWeight: 500,
-            fontFamily: 'monospace',
-            transition: 'border-color 0.15s',
+            fontFamily: "monospace",
+            transition: "border-color 0.15s",
           }}
-          onMouseEnter={e => e.currentTarget.style.borderColor = '#373e47'}
-          onMouseLeave={e => e.currentTarget.style.borderColor = '#21262d'}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#373e47")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#21262d")}
         >
           rikrdo.ortega@gmail.com
         </a>
@@ -40,21 +63,21 @@ export default function Contact() {
           target="_blank"
           rel="noreferrer"
           style={{
-            background: 'transparent',
-            color: '#8b949e',
-            border: '1px solid #21262d',
-            padding: '11px 22px',
-            borderRadius: '8px',
-            fontSize: '13px',
+            background: "transparent",
+            color: "#8b949e",
+            border: "1px solid #21262d",
+            padding: "11px 22px",
+            borderRadius: "8px",
+            fontSize: "13px",
             fontWeight: 500,
-            transition: 'border-color 0.15s',
+            transition: "border-color 0.15s",
           }}
-          onMouseEnter={e => e.currentTarget.style.borderColor = '#373e47'}
-          onMouseLeave={e => e.currentTarget.style.borderColor = '#21262d'}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#373e47")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#21262d")}
         >
           LinkedIn ↗
         </a>
       </div>
     </section>
-  )
+  );
 }
