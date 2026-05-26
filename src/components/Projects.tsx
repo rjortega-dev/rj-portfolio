@@ -9,7 +9,7 @@ type Project = {
 const PROJECTS: Project[] = [
   {
     title: "Portfolio Site",
-    year: "2025",
+    year: "2026",
     tags: ["React", "TypeScript", "Vite"],
     desc: "Personal portfolio rebuilt from a Hugo site. Migrated to React and TypeScript for full control over the UI and maintainability.",
     github: "https://github.com/rjortega-dev/rj-portfolio",
