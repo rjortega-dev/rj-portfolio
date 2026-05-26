@@ -4,7 +4,7 @@ Personal portfolio site built with React and TypeScript. Migrated from a Hugo st
 
 ## Preview
 
-![rj-ortega.dev](./public/preview.png)
+![rj-ortega.dev](./public/demo.gif)
 
 ## Why the rebuild
 
