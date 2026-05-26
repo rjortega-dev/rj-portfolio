@@ -20,8 +20,12 @@ export default function App() {
         display: 'flex',
         justifyContent: 'space-between',
       }}>
-        <span style={{ fontSize: '11px', color: '#6e7681' }}>Ricardo Ortega © 2025</span>
-        <span style={{ fontSize: '11px', color: '#6e7681' }}>Denver, CO</span>
+        <span style={{ fontSize: '11px', color: '#6e7681' }}>
+          Ricardo Ortega © {new Date().getFullYear()}
+        </span>
+        <span style={{ fontSize: '11px', color: '#6e7681' }}>
+          Denver, CO
+        </span>
       </footer>
     </div>
   )
