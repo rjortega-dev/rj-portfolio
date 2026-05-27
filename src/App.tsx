@@ -6,6 +6,14 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 
 export default function App() {
+  console.log(
+    "%c👋 Hey, you found this.",
+    "color: #6366f1; font-size: 16px; font-weight: bold;",
+  );
+  console.log(
+    "%cLet's talk → rikrdo.ortega@gmail.com",
+    "color: #8b949e; font-size: 13px;",
+  );
   return (
     <div style={{ position: "relative" }}>
       {/* Dot grid background */}
