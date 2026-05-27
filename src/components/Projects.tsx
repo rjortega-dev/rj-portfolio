@@ -34,7 +34,7 @@ const PROJECTS: Project[] = [
     title: "Vue Enquire App",
     year: "2019",
     tags: ["Vue", "JavaScript"],
-    desc: "CRM mobile demo app built with Vue",
+    desc: "CRM mobile demo app built with Vue.",
     github: "https://github.com/rj-ortega/vue-enquire-app",
   },
   {

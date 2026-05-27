@@ -1,7 +1,7 @@
 const PARAGRAPHS = [
-  "Born and raised in Venezuela, I came to the US at 14. I ended up graduating college with a double major in Psychology and Modern Languages — not the most direct path to software, but it shaped how I think about people and communication. After years in different industries I stumbled into coding and it immediately clicked.",
-  "I joined Flatiron School and found the thing that finally stuck. After graduating I joined Enquire as a full-stack software developer, building CRM software for senior living facilities. Two and a half years of real production work — C#, ASP.NET, Vue, SQL, and Azure.",
-  "I'm currently in a software development apprenticeship building AI-powered features with OpenAI's API alongside React and TypeScript. In parallel I'm going deeper into data science through a second bootcamp — building analysis pipelines with Python, PySpark, and Pandas, and visualizing results in Tableau.",
+  "Born and raised in Venezuela, I came to the US at 14. I ended up graduating college with a double major in Psychology and Modern Languages — not the most direct path to software, but it shaped how I think about people and communication. Beyond code, I speak English, Spanish, and Italian fluently, and I'm currently learning Japanese.",
+  "After years in different industries I stumbled into coding and it immediately clicked. I joined Flatiron School and found a field I could be passionate about surrounded by a great community. After graduating I joined Enquire as a full-stack software developer, building CRM software for senior living facilities. I spent two and a half years creating and contributing to real production work — C#, ASP.NET, Vue, SQL, and Azure.",
+  "I'm currently in a software development apprenticeship building AI-powered features with OpenAI's API alongside React and TypeScript. In parallel, I'm going deeper into data science through a second bootcamp — building analysis pipelines with Python, PySpark, and Pandas, and visualizing results in Tableau.",
   "I'm based in Denver and looking for roles that sit at the intersection of engineering and data.",
 ];
 

@@ -2,6 +2,7 @@ import profilePhoto from "../assets/profile.jpg";
 
 export default function Hero() {
   const yearsExperience = new Date().getFullYear() - 2019;
+  const isMobile = window.innerWidth < 480;
 
   return (
     <section
@@ -102,7 +103,7 @@ export default function Hero() {
                 letterSpacing: "0.5px",
               }}
             >
-              Software Developer · Data Analyst
+              Software Developer {isMobile ? <br /> : "·"} Data Analyst
             </p>
           </div>
         </div>
