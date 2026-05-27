@@ -44,7 +44,7 @@ export default function About() {
 
       <div
         style={{
-          maxWidth: "580px",
+          maxWidth: "800px",
           display: "flex",
           flexDirection: "column",
           gap: "14px",

@@ -9,11 +9,13 @@ export default function App() {
   return (
     <div>
       <Nav />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </div>
       <footer
         style={{
           borderTop: "1px solid #21262d",

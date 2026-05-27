@@ -1,3 +1,5 @@
+import profilePhoto from "../assets/profile.jpg";
+
 export default function Hero() {
   const yearsExperience = new Date().getFullYear() - 2019;
 
@@ -22,7 +24,7 @@ export default function Hero() {
         }}
       />
 
-      <div style={{ position: "relative", maxWidth: "660px" }}>
+      <div style={{ position: "relative" }}>
         {/* Status pill */}
         <div
           style={{
@@ -57,32 +59,53 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1
+        {/* Avatar + name row */}
+        <div
           style={{
-            fontSize: "46px",
-            fontWeight: 800,
-            color: "#e2e8f0",
-            letterSpacing: "-1.5px",
-            lineHeight: 1.08,
-            marginBottom: "8px",
+            display: "flex",
+            alignItems: "center",
+            gap: "24px",
+            marginBottom: "16px",
           }}
         >
-          Ricardo
-          <br />
-          Ortega
-        </h1>
-
-        <p
-          style={{
-            fontSize: "16px",
-            color: "#6366f1",
-            fontWeight: 500,
-            letterSpacing: "0.5px",
-            marginBottom: "14px",
-          }}
-        >
-          Software Developer · Data Analyst
-        </p>
+          <img
+            src={profilePhoto}
+            alt="Ricardo Ortega"
+            style={{
+              width: "140px",
+              height: "140px",
+              borderRadius: "50%",
+              objectFit: "cover",
+              objectPosition: "left bottom",
+              border: "2px solid #6366f1",
+              flexShrink: 0,
+            }}
+          />
+          <div>
+            <h1
+              style={{
+                fontSize: "46px",
+                fontWeight: 800,
+                color: "#e2e8f0",
+                letterSpacing: "-1.5px",
+                lineHeight: 1.08,
+                marginBottom: "16px",
+              }}
+            >
+              Ricardo Ortega
+            </h1>
+            <p
+              style={{
+                fontSize: "16px",
+                color: "#6366f1",
+                fontWeight: 500,
+                letterSpacing: "0.5px",
+              }}
+            >
+              Software Developer · Data Analyst
+            </p>
+          </div>
+        </div>
 
         <p
           style={{
@@ -90,7 +113,7 @@ export default function Hero() {
             color: "#8b949e",
             lineHeight: 1.75,
             marginBottom: "28px",
-            maxWidth: "480px",
+            maxWidth: "800px",
           }}
         >
           Building web apps and data pipelines. Background in React and
@@ -139,6 +162,7 @@ export default function Hero() {
             gap: "32px",
             paddingTop: "28px",
             borderTop: "1px solid #21262d",
+            maxWidth: "800px",
           }}
         >
           {[
