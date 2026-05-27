@@ -12,19 +12,6 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Dot grid background */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "radial-gradient(circle, #21262d 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          opacity: 0.5,
-          pointerEvents: "none",
-        }}
-      />
-
       <div style={{ position: "relative" }}>
         {/* Status pill */}
         <div

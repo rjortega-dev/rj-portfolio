@@ -32,7 +32,8 @@ export default function Nav() {
             letterSpacing: "-0.3px",
           }}
         >
-          rj<span style={{ color: "#6366f1" }}>.</span>dev
+          rj<span style={{ color: "#6366f1" }}>-</span>ortega
+          <span style={{ color: "#6366f1" }}>.</span>dev
         </span>
         <div style={{ display: "flex", gap: "24px" }}>
           {LINKS.map((link) => (

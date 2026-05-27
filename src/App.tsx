@@ -7,9 +7,28 @@ import Contact from "./components/Contact";
 
 export default function App() {
   return (
-    <div>
+    <div style={{ position: "relative" }}>
+      {/* Dot grid background */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          backgroundImage:
+            "radial-gradient(circle, #21262d 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          opacity: 0.5,
+          pointerEvents: "none",
+        }}
+      />
       <Nav />
-      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          maxWidth: "1000px",
+          margin: "0 auto",
+        }}
+      >
         <Hero />
         <About />
         <Skills />
@@ -22,6 +41,9 @@ export default function App() {
           padding: "18px 2.5rem",
           display: "flex",
           justifyContent: "space-between",
+          background: "#0d1117",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <span style={{ fontSize: "11px", color: "#6e7681" }}>
