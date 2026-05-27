@@ -1,4 +1,6 @@
 export default function Hero() {
+  const yearsExperience = new Date().getFullYear() - 2019;
+
   return (
     <section
       style={{
@@ -140,8 +142,7 @@ export default function Hero() {
           }}
         >
           {[
-            { n: "6+", label: "Years coding" },
-            { n: "2", label: "Bootcamps" },
+            { n: `${yearsExperience}+`, label: "Years coding" },
             { n: "Denver", label: "Colorado" },
           ].map(({ n, label }) => (
             <div key={label}>
