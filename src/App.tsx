@@ -6,6 +6,8 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 
 export default function App() {
+  const isMobile = window.innerWidth < 640;
+
   console.log(
     "%c👋 Hey, you found this.",
     "color: #6366f1; font-size: 16px; font-weight: bold;",
@@ -14,6 +16,7 @@ export default function App() {
     "%cLet's talk → rikrdo.ortega@gmail.com",
     "color: #8b949e; font-size: 13px;",
   );
+
   return (
     <div style={{ position: "relative" }}>
       {/* Dot grid background */}
@@ -35,6 +38,7 @@ export default function App() {
           zIndex: 1,
           maxWidth: "1000px",
           margin: "0 auto",
+          padding: isMobile ? "0 1rem" : "0 2.5rem",
         }}
       >
         <Hero />
@@ -46,7 +50,7 @@ export default function App() {
       <footer
         style={{
           borderTop: "1px solid #21262d",
-          padding: "18px 2.5rem",
+          padding: isMobile ? "18px 1rem" : "18px 2.5rem",
           display: "flex",
           justifyContent: "space-between",
           background: "#0d1117",

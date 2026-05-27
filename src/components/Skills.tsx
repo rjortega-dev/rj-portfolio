@@ -22,7 +22,7 @@ const SKILLS = {
 
 export default function Skills() {
   return (
-    <section id="skills" style={{ padding: "80px 2.5rem" }}>
+    <section id="skills">
       <div
         style={{
           display: "flex",

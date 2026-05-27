@@ -16,3 +16,15 @@ body {
 a {
   text-decoration: none;
 }
+
+section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+@media (max-width: 640px) {
+  section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}

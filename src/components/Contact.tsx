@@ -1,6 +1,10 @@
 export default function Contact() {
+  const isMobile = window.innerWidth < 640;
   return (
-    <section id="contact" style={{ padding: "80px 2.5rem 120px" }}>
+    <section
+      id="contact"
+      style={{ padding: isMobile ? "40px 0 60px" : "60px 0 120px" }}
+    >
       <div
         style={{
           display: "flex",

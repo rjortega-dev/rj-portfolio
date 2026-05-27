@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 type Project = {
   title: string;
   year: string;
@@ -61,19 +59,10 @@ const PROJECTS: Project[] = [
 ];
 
 export default function Projects() {
-  const [columns, setColumns] = useState(
-    window.innerWidth < 768 ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
-  );
-
-  useEffect(() => {
-    const handler = () =>
-      setColumns(window.innerWidth < 768 ? "repeat(2, 1fr)" : "repeat(3, 1fr)");
-    window.addEventListener("resize", handler);
-    return () => window.removeEventListener("resize", handler);
-  }, []);
-
+  const isMobile = window.innerWidth < 640;
+  const columns = isMobile ? "1fr" : "repeat(3, 1fr)";
   return (
-    <section id="projects" style={{ padding: "80px 2.5rem" }}>
+    <section id="projects">
       <div
         style={{
           display: "flex",

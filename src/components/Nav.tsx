@@ -1,6 +1,7 @@
 const LINKS = ["About", "Skills", "Projects", "Contact"];
 
 export default function Nav() {
+  const isMobile = window.innerWidth < 640;
   return (
     <>
       <div
@@ -16,7 +17,7 @@ export default function Nav() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 2.5rem",
+          padding: isMobile ? "0 1rem" : "0 2.5rem",
           height: "52px",
           position: "sticky",
           top: 0,
@@ -35,28 +36,30 @@ export default function Nav() {
           rj<span style={{ color: "#6366f1" }}>-</span>ortega
           <span style={{ color: "#6366f1" }}>.</span>dev
         </span>
-        <div style={{ display: "flex", gap: "24px" }}>
-          {LINKS.map((link) => (
-            <span
-              key={link}
-              onClick={() =>
-                document
-                  .getElementById(link.toLowerCase())
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              style={{
-                color: "#8b949e",
-                fontSize: "13px",
-                transition: "color 0.15s",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#e2e8f0")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#8b949e")}
-            >
-              {link}
-            </span>
-          ))}
-        </div>
+        {!isMobile && (
+          <div style={{ display: "flex", gap: "24px" }}>
+            {LINKS.map((link) => (
+              <span
+                key={link}
+                onClick={() =>
+                  document
+                    .getElementById(link.toLowerCase())
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                style={{
+                  color: "#8b949e",
+                  fontSize: "13px",
+                  transition: "color 0.15s",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#e2e8f0")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#8b949e")}
+              >
+                {link}
+              </span>
+            ))}
+          </div>
+        )}
       </nav>
     </>
   );

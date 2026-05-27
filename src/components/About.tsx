@@ -7,7 +7,7 @@ const PARAGRAPHS = [
 
 export default function About() {
   return (
-    <section id="about" style={{ padding: "80px 2.5rem" }}>
+    <section id="about">
       <div
         style={{
           display: "flex",
@@ -53,7 +53,12 @@ export default function About() {
         {PARAGRAPHS.map((p, i) => (
           <p
             key={i}
-            style={{ fontSize: "14px", color: "#8b949e", lineHeight: 1.8 }}
+            style={{
+              fontSize: "14px",
+              color: "#8b949e",
+              lineHeight: 1.8,
+              textAlign: "justify",
+            }}
           >
             {p}
           </p>

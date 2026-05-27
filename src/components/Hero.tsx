@@ -2,12 +2,11 @@ import profilePhoto from "../assets/profile.jpg";
 
 export default function Hero() {
   const yearsExperience = new Date().getFullYear() - 2019;
-  const isMobile = window.innerWidth < 480;
-
+  const isMobile = window.innerWidth < 640;
   return (
     <section
       style={{
-        padding: "72px 2.5rem 60px",
+        padding: "72px 0 60px",
         position: "relative",
         overflow: "hidden",
       }}
@@ -102,6 +101,7 @@ export default function Hero() {
             lineHeight: 1.75,
             marginBottom: "28px",
             maxWidth: "800px",
+            textAlign: "justify",
           }}
         >
           Building web apps and data pipelines. Background in React and
