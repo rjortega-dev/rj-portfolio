@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 type Project = {
   title: string;
   year: string;
@@ -59,6 +61,17 @@ const PROJECTS: Project[] = [
 ];
 
 export default function Projects() {
+  const [columns, setColumns] = useState(
+    window.innerWidth < 768 ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
+  );
+
+  useEffect(() => {
+    const handler = () =>
+      setColumns(window.innerWidth < 768 ? "repeat(2, 1fr)" : "repeat(3, 1fr)");
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+
   return (
     <section id="projects" style={{ padding: "80px 2.5rem" }}>
       <div
@@ -98,7 +111,7 @@ export default function Projects() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: columns,
           gap: "12px",
           maxWidth: "900px",
         }}
@@ -178,6 +191,7 @@ export default function Projects() {
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={`View ${project.title} on GitHub`}
                 style={{
                   fontSize: "11px",
                   color: "#6e7681",
