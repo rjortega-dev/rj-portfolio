@@ -1,8 +1,23 @@
 import profilePhoto from "../assets/profile.jpg";
+import glacierPhoto from "../assets/profile2.jpeg";
+import type { EggId, HeroProps } from "../types";
 
-export default function Hero() {
+const ALL_EGGS: { id: EggId; hint: string }[] = [
+  { id: "console", hint: "Try looking under the hood of the browser" },
+  { id: "konami", hint: "There's a famous cheat code from the 80s..." },
+  { id: "avatar", hint: "Red rocks are red, glaciers are blue!" },
+];
+
+export default function Hero({
+  eggFound: foundEggs,
+  onAvatarClick,
+  avatarClicked,
+}: HeroProps) {
   const yearsExperience = new Date().getFullYear() - 2019;
   const isMobile = window.innerWidth < 640;
+  const allFound = foundEggs.length === ALL_EGGS.length;
+  const unfoundEggs = ALL_EGGS.filter((egg) => !foundEggs.includes(egg.id));
+
   return (
     <section
       style={{
@@ -12,6 +27,36 @@ export default function Hero() {
       }}
     >
       <div style={{ position: "relative" }}>
+        {/* Easter egg counter */}
+        {foundEggs.length > 0 && (
+          <div style={{ marginBottom: "16px" }}>
+            <div
+              style={{
+                fontSize: "12px",
+                color: allFound ? "#3fb950" : "#8b949e",
+                marginBottom: "6px",
+              }}
+            >
+              {allFound
+                ? "🎉 All easter eggs found!"
+                : `🥚 ${foundEggs.length}/${ALL_EGGS.length} easter eggs found`}
+            </div>
+            {!allFound && (
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: "2px" }}
+              >
+                {unfoundEggs.map((egg) => (
+                  <span
+                    key={egg.id}
+                    style={{ fontSize: "11px", color: "#6e7681" }}
+                  >
+                    • {egg.hint}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
         {/* Status pill */}
         <div
           style={{
@@ -56,16 +101,18 @@ export default function Hero() {
           }}
         >
           <img
-            src={profilePhoto}
+            src={avatarClicked ? glacierPhoto : profilePhoto}
             alt="Ricardo Ortega"
+            onClick={onAvatarClick}
             style={{
               width: "140px",
               height: "140px",
               borderRadius: "50%",
               objectFit: "cover",
-              objectPosition: "left bottom",
+              objectPosition: avatarClicked ? "center right" : "left bottom",
               border: "2px solid #6366f1",
               flexShrink: 0,
+              cursor: "pointer",
             }}
           />
           <div>
