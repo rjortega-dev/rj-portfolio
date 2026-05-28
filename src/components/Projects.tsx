@@ -1,64 +1,86 @@
-type Project = {
-  title: string;
-  year: string;
-  tags: string[];
-  desc: string;
-  github: string;
-};
+import type { Project, ProjectsProps } from "../types";
 
 const PROJECTS: Project[] = [
   {
     title: "Portfolio Site",
     year: "2026",
-    tags: ["React", "TypeScript", "Vite"],
+    tags: [
+      "React",
+      "TypeScript",
+      "Javascript",
+      "Vite",
+      "Vercel",
+      "HTML/CSS",
+      "Git",
+      "Node.js",
+    ],
     desc: "Personal portfolio rebuilt from a Hugo site. Migrated to React and TypeScript for full control over the UI and maintainability.",
     github: "https://github.com/rjortega-dev/rj-portfolio",
   },
   {
     title: "AI Dungeon Master Assistant",
     year: "2026",
-    tags: ["Next.js", "TypeScript", "OpenAI"],
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "OpenAI",
+      "Tailwind",
+      "Neon",
+      "Prisma",
+      "Vercel",
+      "Docker",
+      "Git",
+      "Node.js",
+    ],
     desc: "AI-powered dungeon master assistant built with Next.js and the OpenAI API.",
     github: "https://github.com/rjortega-dev/ai-dungeon-master-assistant",
   },
   {
-    title: "Wolves",
-    year: "2020",
-    tags: ["JavaScript"],
-    desc: "A JavaScript project built at Flatiron School.",
-    github: "https://github.com/rj-ortega/wolves",
+    title: "Ani Lobby",
+    year: "2019",
+    tags: [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Semantic UI",
+      "Golang",
+      "Firebase",
+      "Git",
+    ],
+    desc: "Flatiron capstone — anime browsing app with a React/TypeScript frontend, Golang backend, and Firebase OAuth.",
+    github: "https://github.com/rj-ortega/ani-lobby",
   },
   {
     title: "Vue Enquire App",
-    year: "2019",
-    tags: ["Vue", "JavaScript"],
-    desc: "CRM mobile demo app built with Vue.",
+    year: "2020",
+    tags: ["Vue", "Vuetify", "JavaScript", "Firebase", "Git"],
+    desc: "CRM demo app built with Vue and Vuetify, deployed on Firebase.",
     github: "https://github.com/rj-ortega/vue-enquire-app",
   },
   {
-    title: "Ani Lobby",
+    title: "Wolves",
     year: "2019",
-    tags: ["JavaScript", "Jikan API"],
-    desc: "Flatiron capstone — anime browsing and search app powered by the Jikan REST API.",
-    github: "https://github.com/rj-ortega/ani-lobby",
+    tags: ["Ruby", "Ruby2D", "RSpec", "Git"],
+    desc: "A 2D CLI game built with Ruby and Ruby2D. Place archers and riflemen to defend against incoming wolves.",
+    github: "https://github.com/rj-ortega/wolves",
   },
   {
     title: "Game Lobby",
     year: "2019",
-    tags: ["JavaScript"],
+    tags: ["JavaScript", "Ruby on Rails", "Git"],
     desc: "A multiplayer game lobby interface built at Flatiron School.",
     github: "https://github.com/rj-ortega/game-lobby",
   },
   {
     title: "Star Wars Hub",
     year: "2019",
-    tags: ["JavaScript", "SWAPI"],
+    tags: ["JavaScript", "TypeScript", "React", "Axios", "Git"],
     desc: "Star Wars data explorer using the SWAPI REST API.",
     github: "https://github.com/rj-ortega/star-wars-hub",
   },
 ];
 
-export default function Projects() {
+export default function Projects({ activeSkill }: ProjectsProps) {
   const isMobile = window.innerWidth < 640;
   const columns = isMobile ? "1fr" : "repeat(3, 1fr)";
   return (
@@ -105,96 +127,150 @@ export default function Projects() {
           maxWidth: "900px",
         }}
       >
-        {PROJECTS.map((project) => (
-          <div
-            key={project.title}
-            style={{
-              background: "#161b22",
-              border: "1px solid #21262d",
-              borderRadius: "10px",
-              padding: "18px",
-              transition: "border-color 0.15s",
-              display: "flex",
-              flexDirection: "column",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.borderColor = "#373e47")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.borderColor = "#21262d")
-            }
-          >
+        {PROJECTS.map((project) => {
+          const isMatch =
+            activeSkill.length === 0 ||
+            project.tags.some((tag) => activeSkill.includes(tag));
+
+          const visibleTags = project.tags.slice(0, 4);
+          const remainingCount = project.tags.length - 4;
+
+          return (
             <div
+              key={project.title}
               style={{
+                background: "#161b22",
+                border: `1px solid ${!isMatch ? "#21262d" : activeSkill.length > 0 ? "#6366f1" : "#21262d"}`,
+                borderRadius: "10px",
+                padding: "18px",
+                transition: "all 0.15s",
                 display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                marginBottom: "7px",
+                flexDirection: "column",
+                opacity: isMatch ? 1 : 0.3,
+                minHeight: "180px",
               }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.borderColor =
+                  isMatch && activeSkill.length > 0 ? "#6366f1" : "#373e47")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.borderColor =
+                  isMatch && activeSkill.length > 0 ? "#6366f1" : "#21262d")
+              }
             >
-              <span
-                style={{ fontSize: "13px", fontWeight: 600, color: "#e2e8f0" }}
-              >
-                {project.title}
-              </span>
-              <span style={{ fontSize: "11px", color: "#6e7681" }}>
-                {project.year}
-              </span>
-            </div>
-            <p
-              style={{
-                fontSize: "12px",
-                color: "#8b949e",
-                lineHeight: 1.6,
-                marginBottom: "13px",
-                flex: 1,
-              }}
-            >
-              {project.desc}
-            </p>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      background: "rgba(99,102,241,0.1)",
-                      border: "1px solid rgba(99,102,241,0.15)",
-                      color: "#818cf8",
-                      fontSize: "10px",
-                      padding: "2px 7px",
-                      borderRadius: "4px",
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`View ${project.title} on GitHub`}
+              <div
                 style={{
-                  fontSize: "11px",
-                  color: "#6e7681",
-                  marginLeft: "8px",
-                  whiteSpace: "nowrap",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  marginBottom: "7px",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#e2e8f0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#6e7681")}
               >
-                GitHub ↗
-              </a>
+                <span
+                  style={{
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    color: "#e2e8f0",
+                  }}
+                >
+                  {project.title}
+                </span>
+                <span style={{ fontSize: "11px", color: "#6e7681" }}>
+                  {project.year}
+                </span>
+              </div>
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "#8b949e",
+                  lineHeight: 1.6,
+                  marginBottom: "13px",
+                  flex: 1,
+                }}
+              >
+                {project.desc}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    flexWrap: "wrap",
+                    minHeight: "44px",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  {visibleTags.map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        background: "rgba(99,102,241,0.1)",
+                        border: "1px solid rgba(99,102,241,0.15)",
+                        color: "#818cf8",
+                        fontSize: "10px",
+                        padding: "2px 7px",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  {remainingCount > 0 && (
+                    <span
+                      title={project.tags.slice(4).join(", ")}
+                      style={{
+                        background: "transparent",
+                        border: "1px solid #373e47",
+                        color: "#6e7681",
+                        fontSize: "10px",
+                        padding: "2px 7px",
+                        borderRadius: "4px",
+                        cursor: "default",
+                        transition: "all 0.15s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "#6366f1";
+                        e.currentTarget.style.color = "#818cf8";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "#373e47";
+                        e.currentTarget.style.color = "#6e7681";
+                      }}
+                    >
+                      +{remainingCount}
+                    </span>
+                  )}
+                </div>
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`View ${project.title} on GitHub`}
+                  style={{
+                    fontSize: "11px",
+                    color: "#6e7681",
+                    marginLeft: "8px",
+                    whiteSpace: "nowrap",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#e2e8f0")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "#6e7681")
+                  }
+                >
+                  GitHub ↗
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
