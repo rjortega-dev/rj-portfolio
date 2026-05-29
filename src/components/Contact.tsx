@@ -68,12 +68,13 @@ export default function Contact() {
           rel="noreferrer"
           style={{
             background: "transparent",
-            color: "#8b949e",
+            color: "#e2e8f0",
             border: "1px solid #21262d",
             padding: "11px 22px",
             borderRadius: "8px",
             fontSize: "13px",
             fontWeight: 500,
+            fontFamily: "monospace",
             transition: "border-color 0.15s",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#373e47")}
