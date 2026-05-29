@@ -140,7 +140,7 @@ export default function Projects({ activeSkill }: ProjectsProps) {
               key={project.title}
               style={{
                 background: "#161b22",
-                border: `1px solid ${!isMatch ? "#21262d" : activeSkill.length > 0 ? "#6366f1" : "#21262d"}`,
+                border: `1px solid ${isMatch && activeSkill.length > 0 ? "#6366f1" : "#21262d"}`,
                 borderRadius: "10px",
                 padding: "18px",
                 transition: "all 0.15s",
