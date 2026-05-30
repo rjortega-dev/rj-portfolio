@@ -32,6 +32,7 @@ export default function App() {
   };
 
   // Console Easter Egg
+  const consoleEggClaimed = useRef(false);
   useEffect(() => {
     console.log(
       "%c👋 Hey, you found this.",
@@ -42,11 +43,14 @@ export default function App() {
       "color: #fff; font-size: 14px;",
     );
     window.claimEgg = () => {
-      findEgg("console");
-      console.log(
-        "%cYou found the Console 🥚 Easter egg! 🎉",
-        "color: #6366f1; font-size: 16px; font-weight: bold;",
-      );
+      if (!consoleEggClaimed.current) {
+        consoleEggClaimed.current = true;
+        console.log(
+          "%cYou found the Console 🥚 Easter egg! 🎉",
+          "color: #6366f1; font-size: 16px; font-weight: bold;",
+        );
+        findEgg("console");
+      }
     };
     return () => {
       delete window.claimEgg;
@@ -55,61 +59,54 @@ export default function App() {
 
   // Konami Code Easter Egg
   const konamiSequence = useRef<string[]>([]);
-
+  const konamiEggClaimed = useRef(false);
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter" && eggFound.includes("konami")) {
         setKonamiActive((prev) => !prev);
-        return;
       }
-
       konamiSequence.current = [...konamiSequence.current, e.key].slice(
         -KONAMI.length,
       );
       if (konamiSequence.current.join(",") === KONAMI.join(",")) {
         setKonamiActive(true);
-        findEgg("konami");
-        console.log(
-          "%cYou found the Konami Code 🥚 Easter egg! 🎉",
-          "color: #6366f1; font-size: 16px; font-weight: bold;",
-        );
-        console.log(
-          "%cPress Enter to toggle the Konami mode on/off.",
-          "color: #fff; font-size: 14px;",
-        );
+        if (!konamiEggClaimed.current) {
+          konamiEggClaimed.current = true;
+          console.log(
+            "%cYou found the Konami Code 🥚 Easter egg! 🎉",
+            "color: #6366f1; font-size: 16px; font-weight: bold;",
+          );
+          console.log(
+            "%cPress Enter to toggle the Konami mode on/off.",
+            "color: #fff; font-size: 14px;",
+          );
+          findEgg("konami");
+        }
       }
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [konamiActive, eggFound]);
 
   // Avatar Click Easter Egg
   const handleAvatarClick = () => {
+    if (!eggFound.includes("avatar")) {
+      console.log(
+        "%cYou found the Avatar 🥚 Easter egg! 🎉",
+        "color: #6366f1; font-size: 16px; font-weight: bold;",
+      );
+    }
     findEgg("avatar");
     setAvatarClicked((prev) => !prev);
-    console.log(
-      "%cYou found the Avatar 🥚 Easter egg! 🎉",
-      "color: #6366f1; font-size: 16px; font-weight: bold;",
-    );
   };
+
+  // Skill filter handlers
   const handleSkillClick = (skill: string) => {
     setActiveSkill((prev) =>
       prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill],
     );
   };
-
   const handleClear = () => setActiveSkill([]);
-
-  // Easter egg 🥚 for anyone inspecting the console
-  console.log(
-    "%c👋 Hey, you found this.",
-    "color: #6366f1; font-size: 16px; font-weight: bold;",
-  );
-  console.log(
-    "%cLet's talk → rikrdo.ortega@gmail.com",
-    "color: #8b949e; font-size: 13px;",
-  );
 
   return (
     <div
