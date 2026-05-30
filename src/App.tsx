@@ -44,7 +44,7 @@ export default function App() {
     window.claimEgg = () => {
       findEgg("console");
       console.log(
-        "%cCongrats! You found the console 🥚 Easter egg! 🎉",
+        "%cYou found the Console 🥚 Easter egg! 🎉",
         "color: #6366f1; font-size: 16px; font-weight: bold;",
       );
     };
@@ -70,12 +70,12 @@ export default function App() {
         setKonamiActive(true);
         findEgg("konami");
         console.log(
-          "%cYou unlocked the Konami Code! 🥚🎉",
+          "%cYou found the Konami Code 🥚 Easter egg! 🎉",
           "color: #6366f1; font-size: 16px; font-weight: bold;",
         );
         console.log(
           "%cPress Enter to toggle the Konami mode on/off.",
-          "color: #8b949e; font-size: 13px;",
+          "color: #fff; font-size: 14px;",
         );
       }
     };
@@ -89,7 +89,7 @@ export default function App() {
     findEgg("avatar");
     setAvatarClicked((prev) => !prev);
     console.log(
-      "%cYou found the avatar Easter egg! 🥚🎉",
+      "%cYou found the Avatar 🥚 Easter egg! 🎉",
       "color: #6366f1; font-size: 16px; font-weight: bold;",
     );
   };
