@@ -3,9 +3,15 @@ import glacierPhoto from "../assets/profile2.jpeg";
 import type { EggId, HeroProps } from "../types";
 
 const ALL_EGGS: { id: EggId; hint: string }[] = [
-  { id: "console", hint: "Try looking under the hood of the browser" },
-  { id: "konami", hint: "There's a famous cheat code from the 80s..." },
-  { id: "avatar", hint: "Red rocks are red, glaciers are blue!" },
+  {
+    id: "console",
+    hint: "Egg #1 hint: Try looking under the hood of the browser",
+  },
+  {
+    id: "konami",
+    hint: "Egg #2 hint: There's a famous cheat code from the 80s...",
+  },
+  { id: "avatar", hint: "Egg #3 hint: Red rocks are red, glaciers are blue!" },
 ];
 
 export default function Hero({
