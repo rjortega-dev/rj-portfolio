@@ -5,7 +5,7 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import type { EggId } from "./types";
+import type { EggId, ActiveSkill } from "./types";
 
 const KONAMI = [
   "ArrowUp",
@@ -19,12 +19,10 @@ const KONAMI = [
   "b",
   "a",
 ];
-import type { ActiveSkill } from "./types";
 
 export default function App() {
   const isMobile = window.innerWidth < 640;
   const [activeSkill, setActiveSkill] = useState<ActiveSkill>([]);
-
   const [eggFound, setEggFound] = useState<EggId[]>([]);
   const [konamiActive, setKonamiActive] = useState(false);
   const [avatarClicked, setAvatarClicked] = useState(false);
@@ -43,7 +41,6 @@ export default function App() {
       "%cType claimEgg() in this console to claim a reward.",
       "color: #fff; font-size: 14px;",
     );
-
     window.claimEgg = () => {
       findEgg("console");
       console.log(
