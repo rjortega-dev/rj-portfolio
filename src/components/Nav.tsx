@@ -47,13 +47,13 @@ export default function Nav() {
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
                 style={{
-                  color: "#8b949e",
+                  color: "#e2e8f0",
                   fontSize: "13px",
                   transition: "color 0.15s",
                   cursor: "pointer",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#e2e8f0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#8b949e")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#6366f1")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#e2e8f0")}
               >
                 {link}
               </span>

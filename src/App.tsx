@@ -19,9 +19,11 @@ const KONAMI = [
   "b",
   "a",
 ];
+import type { ActiveSkill } from "./types";
 
 export default function App() {
   const isMobile = window.innerWidth < 640;
+  const [activeSkill, setActiveSkill] = useState<ActiveSkill>([]);
 
   const [eggFound, setEggFound] = useState<EggId[]>([]);
   const [konamiActive, setKonamiActive] = useState(false);
@@ -94,6 +96,23 @@ export default function App() {
       "color: #6366f1; font-size: 16px; font-weight: bold;",
     );
   };
+  const handleSkillClick = (skill: string) => {
+    setActiveSkill((prev) =>
+      prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill],
+    );
+  };
+
+  const handleClear = () => setActiveSkill([]);
+
+  // Easter egg 🥚 for anyone inspecting the console
+  console.log(
+    "%c👋 Hey, you found this.",
+    "color: #6366f1; font-size: 16px; font-weight: bold;",
+  );
+  console.log(
+    "%cLet's talk → rikrdo.ortega@gmail.com",
+    "color: #8b949e; font-size: 13px;",
+  );
 
   return (
     <div
@@ -128,8 +147,12 @@ export default function App() {
           avatarClicked={avatarClicked}
         />
         <About />
-        <Skills />
-        <Projects />
+        <Skills
+          onSkillClick={handleSkillClick}
+          activeSkill={activeSkill}
+          onClear={handleClear}
+        />
+        <Projects activeSkill={activeSkill} />
         <Contact />
       </div>
       <footer
@@ -143,10 +166,10 @@ export default function App() {
           zIndex: 1,
         }}
       >
-        <span style={{ fontSize: "11px", color: "#6e7681" }}>
+        <span style={{ fontSize: "11px", color: "#e2e8f0" }}>
           Ricardo Ortega © {new Date().getFullYear()}
         </span>
-        <span style={{ fontSize: "11px", color: "#6e7681" }}>Denver, CO</span>
+        <span style={{ fontSize: "11px", color: "#e2e8f0" }}>Denver, CO</span>
       </footer>
     </div>
   );

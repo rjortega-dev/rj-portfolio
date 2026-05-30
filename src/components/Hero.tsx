@@ -162,7 +162,7 @@ export default function Hero({
             target="_blank"
             rel="noreferrer"
             style={{
-              background: "#6366f1",
+              background: "#4f46e5",
               color: "#fff",
               padding: "9px 20px",
               borderRadius: "8px",
@@ -177,13 +177,12 @@ export default function Hero({
             target="_blank"
             rel="noreferrer"
             style={{
-              background: "transparent",
-              color: "#e2e8f0",
+              background: "#4f46e5",
+              color: "#fff",
               padding: "9px 20px",
               borderRadius: "8px",
               fontSize: "13px",
               fontWeight: 600,
-              border: "1px solid #21262d",
             }}
           >
             LinkedIn ↗
