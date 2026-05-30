@@ -1,16 +1,101 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Hero from "./components/Hero";
 import Nav from "./components/Nav";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import type { EggId } from "./types";
+
+const KONAMI = [
+  "ArrowUp",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowLeft",
+  "ArrowRight",
+  "b",
+  "a",
+];
 import type { ActiveSkill } from "./types";
 
 export default function App() {
   const isMobile = window.innerWidth < 640;
   const [activeSkill, setActiveSkill] = useState<ActiveSkill>([]);
 
+  const [eggFound, setEggFound] = useState<EggId[]>([]);
+  const [konamiActive, setKonamiActive] = useState(false);
+  const [avatarClicked, setAvatarClicked] = useState(false);
+
+  const findEgg = (id: EggId) => {
+    setEggFound((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  };
+
+  // Console Easter Egg
+  useEffect(() => {
+    console.log(
+      "%c👋 Hey, you found this.",
+      "color: #6366f1; font-size: 16px; font-weight: bold;",
+    );
+    console.log(
+      "%cType claimEgg() in this console to claim a reward.",
+      "color: #fff; font-size: 14px;",
+    );
+
+    window.claimEgg = () => {
+      findEgg("console");
+      console.log(
+        "%cCongrats! You found the console 🥚 Easter egg! 🎉",
+        "color: #6366f1; font-size: 16px; font-weight: bold;",
+      );
+    };
+    return () => {
+      delete window.claimEgg;
+    };
+  }, []);
+
+  // Konami Code Easter Egg
+  const konamiSequence = useRef<string[]>([]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && eggFound.includes("konami")) {
+        setKonamiActive((prev) => !prev);
+        return;
+      }
+
+      konamiSequence.current = [...konamiSequence.current, e.key].slice(
+        -KONAMI.length,
+      );
+      if (konamiSequence.current.join(",") === KONAMI.join(",")) {
+        setKonamiActive(true);
+        findEgg("konami");
+        console.log(
+          "%cYou unlocked the Konami Code! 🥚🎉",
+          "color: #6366f1; font-size: 16px; font-weight: bold;",
+        );
+        console.log(
+          "%cPress Enter to toggle the Konami mode on/off.",
+          "color: #8b949e; font-size: 13px;",
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [konamiActive, eggFound]);
+
+  // Avatar Click Easter Egg
+  const handleAvatarClick = () => {
+    findEgg("avatar");
+    setAvatarClicked((prev) => !prev);
+    console.log(
+      "%cYou found the avatar Easter egg! 🥚🎉",
+      "color: #6366f1; font-size: 16px; font-weight: bold;",
+    );
+  };
   const handleSkillClick = (skill: string) => {
     setActiveSkill((prev) =>
       prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill],
@@ -30,7 +115,10 @@ export default function App() {
   );
 
   return (
-    <div style={{ position: "relative" }}>
+    <div
+      className={konamiActive ? "konami-active" : ""}
+      style={{ position: "relative" }}
+    >
       {/* Dot grid background */}
       <div
         style={{
@@ -53,7 +141,11 @@ export default function App() {
           padding: isMobile ? "0 1rem" : "0 2.5rem",
         }}
       >
-        <Hero />
+        <Hero
+          eggFound={eggFound}
+          onAvatarClick={handleAvatarClick}
+          avatarClicked={avatarClicked}
+        />
         <About />
         <Skills
           onSkillClick={handleSkillClick}
