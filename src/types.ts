@@ -1,27 +1,30 @@
+declare global {
+  interface Window {
+    claimEgg?: () => void;
+  }
+}
+
 export type EggId = "console" | "konami" | "avatar";
+
+export type ActiveSkill = string[];
 
 export type EasterEgg = {
   id: EggId;
   hint: string;
 };
 
-export type HeroProps = {
-  eggFound: EggId[];
-  onAvatarClick: () => void;
-  avatarClicked: boolean;
-};
-
-declare global {
-  interface Window {
-    claimEgg?: () => void;
-  }
-}
 export type Project = {
   title: string;
   year: string;
   tags: string[];
   desc: string;
   github: string;
+};
+
+export type HeroProps = {
+  eggFound: EggId[];
+  onAvatarClick: () => void;
+  avatarClicked: boolean;
 };
 
 export type SkillsProps = {
@@ -34,4 +37,6 @@ export type ProjectsProps = {
   activeSkill: ActiveSkill;
 };
 
-export type ActiveSkill = string[];
+export type NavProps = {
+  isMobile: boolean;
+};

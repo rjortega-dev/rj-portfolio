@@ -132,7 +132,7 @@ export default function App() {
           pointerEvents: "none",
         }}
       />
-      <Nav />
+      <Nav isMobile={isMobile} />
       <div
         style={{
           position: "relative",
