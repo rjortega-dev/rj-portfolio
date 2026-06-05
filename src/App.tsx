@@ -21,11 +21,18 @@ const KONAMI = [
 ];
 
 export default function App() {
-  const isMobile = window.innerWidth < 640;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
   const [activeSkill, setActiveSkill] = useState<ActiveSkill>([]);
   const [eggFound, setEggFound] = useState<EggId[]>([]);
   const [konamiActive, setKonamiActive] = useState(false);
   const [avatarClicked, setAvatarClicked] = useState(false);
+
+  // Handle responsive design
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const findEgg = (id: EggId) => {
     setEggFound((prev) => (prev.includes(id) ? prev : [...prev, id]));
