@@ -1,7 +1,7 @@
 import profilePhoto from "../assets/profile.jpg";
 import glacierPhoto from "../assets/profile2.jpeg";
 import type { EggId, HeroProps } from "../types";
-import { trackClick } from "../lib/trackClick";
+import { trackClick } from "../lib/events";
 
 const ALL_EGGS: { id: EggId; hint: string }[] = [
   {
