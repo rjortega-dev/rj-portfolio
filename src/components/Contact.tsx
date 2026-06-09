@@ -1,4 +1,6 @@
-export default function Contact() {
+import type { ContactProps } from "../types";
+
+export default function Contact({ trackClick }: ContactProps) {
   const isMobile = window.innerWidth < 640;
   return (
     <section
@@ -46,6 +48,7 @@ export default function Contact() {
       <div style={{ display: "flex", gap: "12px" }}>
         <a
           href="mailto:rikrdo.ortega@gmail.com"
+          onClick={() => trackClick("email-contact")}
           style={{
             background: "transparent",
             color: "#e2e8f0",
@@ -66,6 +69,7 @@ export default function Contact() {
           href="https://linkedin.com/in/rj-ortega"
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackClick("linkedin-contact")}
           style={{
             background: "transparent",
             color: "#e2e8f0",

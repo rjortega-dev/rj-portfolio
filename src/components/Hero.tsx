@@ -1,7 +1,6 @@
 import profilePhoto from "../assets/profile.jpg";
 import glacierPhoto from "../assets/profile2.jpeg";
 import type { EggId, HeroProps } from "../types";
-import { trackClick } from "../lib/events";
 
 const ALL_EGGS: { id: EggId; hint: string }[] = [
   {
@@ -19,6 +18,7 @@ export default function Hero({
   eggFound: foundEggs,
   onAvatarClick,
   avatarClicked,
+  trackClick,
 }: HeroProps) {
   const yearsExperience = new Date().getFullYear() - 2019;
   const isMobile = window.innerWidth < 640;
@@ -168,7 +168,7 @@ export default function Hero({
             href="https://github.com/rjortega-dev/"
             target="_blank"
             rel="noreferrer"
-            onClick={() => trackClick("github")}
+            onClick={() => trackClick("github-hero")}
             style={{
               background: "#4f46e5",
               color: "#fff",
@@ -184,7 +184,7 @@ export default function Hero({
             href="https://linkedin.com/in/rj-ortega"
             target="_blank"
             rel="noreferrer"
-            onClick={() => trackClick("linkedin")}
+            onClick={() => trackClick("linkedin-hero")}
             style={{
               background: "#4f46e5",
               color: "#fff",

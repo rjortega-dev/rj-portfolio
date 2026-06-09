@@ -25,6 +25,7 @@ export type HeroProps = {
   eggFound: EggId[];
   onAvatarClick: () => void;
   avatarClicked: boolean;
+  trackClick: (event: string) => void;
 };
 
 export type SkillsProps = {
@@ -35,6 +36,11 @@ export type SkillsProps = {
 
 export type ProjectsProps = {
   activeSkill: ActiveSkill;
+  trackClick: (event: string) => void;
+};
+
+export type ContactProps = {
+  trackClick: (event: string) => void;
 };
 
 export type NavProps = {

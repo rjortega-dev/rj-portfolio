@@ -6,6 +6,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import type { EggId, ActiveSkill } from "./types";
+import { trackClick } from "./lib/events";
 
 const KONAMI = [
   "ArrowUp",
@@ -146,6 +147,7 @@ export default function App() {
           eggFound={eggFound}
           onAvatarClick={handleAvatarClick}
           avatarClicked={avatarClicked}
+          trackClick={trackClick}
         />
         <About />
         <Skills
@@ -153,8 +155,8 @@ export default function App() {
           activeSkill={activeSkill}
           onClear={handleClear}
         />
-        <Projects activeSkill={activeSkill} />
-        <Contact />
+        <Projects activeSkill={activeSkill} trackClick={trackClick} />
+        <Contact trackClick={trackClick} />
       </div>
       <footer
         style={{

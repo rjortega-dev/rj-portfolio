@@ -80,7 +80,7 @@ const PROJECTS: Project[] = [
   },
 ];
 
-export default function Projects({ activeSkill }: ProjectsProps) {
+export default function Projects({ activeSkill, trackClick }: ProjectsProps) {
   const isMobile = window.innerWidth < 640;
   const columns = isMobile ? "1fr" : "repeat(3, 1fr)";
   return (
@@ -250,6 +250,7 @@ export default function Projects({ activeSkill }: ProjectsProps) {
                 <a
                   href={project.github}
                   target="_blank"
+                  onClick={() => trackClick(`github-${project.title}`)}
                   rel="noreferrer"
                   aria-label={`View ${project.title} on GitHub`}
                   style={{
