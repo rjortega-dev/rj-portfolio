@@ -1,6 +1,7 @@
 import profilePhoto from "../assets/profile.jpg";
 import glacierPhoto from "../assets/profile2.jpeg";
 import type { EggId, HeroProps } from "../types";
+import { trackClick } from "../lib/trackClick";
 
 const ALL_EGGS: { id: EggId; hint: string }[] = [
   {
@@ -167,6 +168,7 @@ export default function Hero({
             href="https://github.com/rjortega-dev/"
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackClick("github")}
             style={{
               background: "#4f46e5",
               color: "#fff",
@@ -182,6 +184,7 @@ export default function Hero({
             href="https://linkedin.com/in/rj-ortega"
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackClick("linkedin")}
             style={{
               background: "#4f46e5",
               color: "#fff",
