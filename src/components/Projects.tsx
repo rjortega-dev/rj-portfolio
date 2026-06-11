@@ -80,8 +80,11 @@ const PROJECTS: Project[] = [
   },
 ];
 
-export default function Projects({ activeSkill, trackClick }: ProjectsProps) {
-  const isMobile = window.innerWidth < 640;
+export default function Projects({
+  activeSkill,
+  trackClick,
+  isMobile,
+}: ProjectsProps) {
   const columns = isMobile ? "1fr" : "repeat(3, 1fr)";
   return (
     <section id="projects">
