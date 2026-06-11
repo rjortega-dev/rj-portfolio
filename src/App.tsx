@@ -5,6 +5,7 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 import type { EggId, ActiveSkill } from "./types";
 import { trackClick } from "./lib/events";
 
@@ -41,6 +42,12 @@ export default function App() {
 
   // Console Easter Egg
   const consoleEggClaimed = useRef(false);
+  const eggFoundRef = useRef<EggId[]>([]);
+
+  useEffect(() => {
+    eggFoundRef.current = eggFound;
+  }, [eggFound]);
+
   useEffect(() => {
     console.log(
       "%c👋 Hey, you found this.",
@@ -68,16 +75,25 @@ export default function App() {
   // Konami Code Easter Egg
   const konamiSequence = useRef<string[]>([]);
   const konamiEggClaimed = useRef(false);
+  const konamiActiveRef = useRef(false);
+
+  useEffect(() => {
+    konamiActiveRef.current = konamiActive;
+  }, [konamiActive]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Enter" && eggFound.includes("konami")) {
-        setKonamiActive((prev) => !prev);
+      if (e.key === "Enter" && eggFoundRef.current.includes("konami")) {
+        const next = !konamiActiveRef.current;
+        setKonamiActive(next);
+        konamiActiveRef.current = next;
       }
       konamiSequence.current = [...konamiSequence.current, e.key].slice(
         -KONAMI.length,
       );
       if (konamiSequence.current.join(",") === KONAMI.join(",")) {
         setKonamiActive(true);
+        konamiActiveRef.current = true;
         if (!konamiEggClaimed.current) {
           konamiEggClaimed.current = true;
           console.log(
@@ -94,7 +110,7 @@ export default function App() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [konamiActive, eggFound]);
+  }, []);
 
   // Avatar Click Easter Egg
   const handleAvatarClick = () => {
@@ -131,13 +147,13 @@ export default function App() {
           backgroundSize: "28px 28px",
           opacity: 0.5,
           pointerEvents: "none",
+          zIndex: -1,
         }}
       />
       <Nav isMobile={isMobile} />
       <div
         style={{
           position: "relative",
-          zIndex: 1,
           maxWidth: "1000px",
           margin: "0 auto",
           padding: isMobile ? "0 1rem" : "0 2.5rem",
@@ -155,25 +171,14 @@ export default function App() {
           activeSkill={activeSkill}
           onClear={handleClear}
         />
-        <Projects activeSkill={activeSkill} trackClick={trackClick} />
+        <Projects
+          activeSkill={activeSkill}
+          trackClick={trackClick}
+          isMobile={isMobile}
+        />
         <Contact trackClick={trackClick} />
       </div>
-      <footer
-        style={{
-          borderTop: "1px solid #21262d",
-          padding: isMobile ? "18px 1rem" : "18px 2.5rem",
-          display: "flex",
-          justifyContent: "space-between",
-          background: "#0d1117",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
-        <span style={{ fontSize: "11px", color: "#e2e8f0" }}>
-          Ricardo Ortega © {new Date().getFullYear()}
-        </span>
-        <span style={{ fontSize: "11px", color: "#e2e8f0" }}>Denver, CO</span>
-      </footer>
+      <Footer isMobile={isMobile} />
     </div>
   );
 }

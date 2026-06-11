@@ -37,6 +37,7 @@ export type SkillsProps = {
 export type ProjectsProps = {
   activeSkill: ActiveSkill;
   trackClick: (event: string) => void;
+  isMobile: boolean;
 };
 
 export type ContactProps = {
@@ -52,4 +53,13 @@ export type ClickRow = {
   label: string;
   clicked_at: string;
   referrer: string | null;
+};
+
+export type FooterProps = {
+  isMobile: boolean;
+};
+
+export type Aggregate = {
+  label: string;
+  count: number;
 };
