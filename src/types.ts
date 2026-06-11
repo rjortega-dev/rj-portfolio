@@ -46,3 +46,10 @@ export type ContactProps = {
 export type NavProps = {
   isMobile: boolean;
 };
+
+export type ClickRow = {
+  id: number;
+  label: string;
+  clicked_at: string;
+  referrer: string | null;
+};
