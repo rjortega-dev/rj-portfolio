@@ -149,7 +149,7 @@ export default function Skills({
               right: 0,
               background: "#161b22",
               border: "1px solid #21262d",
-              color: "#e2e8f0",
+              color: "#8b949e",
               fontSize: "12px",
               padding: "4px 12px",
               borderRadius: "6px",
