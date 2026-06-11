@@ -9,7 +9,7 @@ const ALL_EGGS: { id: EggId; hint: string }[] = [
   },
   {
     id: "konami",
-    hint: "Egg #2 hint: There's a famous cheat code from the 80s...",
+    hint: "Egg #2 hint: There's a famous cheat code from the 80s that unlocks secrets in many games... maybe it works here too?",
   },
   { id: "avatar", hint: "Egg #3 hint: Red rocks are red, glaciers are blue!" },
 ];
@@ -20,7 +20,7 @@ export default function Hero({
   avatarClicked,
   trackClick,
 }: HeroProps) {
-  const yearsExperience = new Date().getFullYear() - 2019;
+  const yearsExperience = new Date().getFullYear() - 2020;
   const isMobile = window.innerWidth < 640;
   const allFound = foundEggs.length === ALL_EGGS.length;
   const unfoundEggs = ALL_EGGS.filter((egg) => !foundEggs.includes(egg.id));
