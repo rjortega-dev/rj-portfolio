@@ -1,4 +1,12 @@
 import { useEffect, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 import { supabase } from "../lib/supabase";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -30,7 +38,6 @@ export default function Stats() {
         const rows = data ?? [];
         setClicks(rows);
 
-        // aggregate counts by label, sorted descending
         const counts: Record<string, number> = {};
         for (const row of rows) {
           counts[row.label] = (counts[row.label] ?? 0) + 1;
@@ -82,7 +89,9 @@ export default function Stats() {
           padding: "40px",
           color: "#e2e8f0",
           maxWidth: "900px",
+          width: "100%",
           margin: "0 auto",
+          boxSizing: "border-box",
         }}
       >
         <h1 style={{ marginBottom: "8px" }}>Stats</h1>
@@ -90,48 +99,53 @@ export default function Stats() {
           {clicks.length} click{clicks.length !== 1 ? "s" : ""} tracked
         </p>
 
-        {/* Aggregates */}
-        <div style={{ marginBottom: "40px" }}>
+        {/* Chart */}
+        <div style={{ marginBottom: "48px" }}>
           <h2
             style={{
               fontSize: "14px",
               color: "#8b949e",
-              marginBottom: "12px",
+              marginBottom: "20px",
               fontWeight: 500,
             }}
           >
             CLICKS BY LINK
           </h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            {aggregates.map(({ label, count }) => (
-              <div
-                key={label}
-                style={{ display: "flex", alignItems: "center", gap: "12px" }}
-              >
-                <span
-                  style={{
-                    width: "260px",
-                    fontSize: "13px",
-                    color: "#818cf8",
-                    flexShrink: 0,
-                  }}
-                >
-                  {label}
-                </span>
-                <div
-                  style={{
-                    height: "6px",
-                    borderRadius: "3px",
-                    background: "#6366f1",
-                    width: `${(count / aggregates[0].count) * 200}px`,
-                  }}
-                />
-                <span style={{ fontSize: "13px", color: "#8b949e" }}>
-                  {count}
-                </span>
-              </div>
-            ))}
-          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart
+              data={aggregates}
+              layout="vertical"
+              margin={{ top: 0, right: 24, left: 0, bottom: 0 }}
+            >
+              <XAxis
+                type="number"
+                tick={{ fill: "#6e7681", fontSize: 12 }}
+                axisLine={false}
+                tickLine={false}
+                allowDecimals={false}
+              />
+              <YAxis
+                type="category"
+                dataKey="label"
+                width={isMobile ? 120 : 240}
+                tick={{ fill: "#818cf8", fontSize: isMobile ? 10 : 12 }}
+                axisLine={false}
+                tickLine={false}
+              />
+              <Tooltip
+                cursor={{ fill: "rgba(99,102,241,0.08)" }}
+                contentStyle={{
+                  background: "#161b22",
+                  border: "1px solid #21262d",
+                  borderRadius: "6px",
+                  fontSize: "12px",
+                  color: "#e2e8f0",
+                }}
+                formatter={(value) => [value ?? 0, "clicks"]}
+              />
+              <Bar dataKey="count" radius={[0, 4, 4, 0]} fill="#6366f1" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
 
         {/* Raw table */}
