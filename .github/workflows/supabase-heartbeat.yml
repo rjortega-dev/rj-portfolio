@@ -2,7 +2,7 @@ name: Supabase heartbeat
 
 on:
   schedule:
-    - cron: "0 9 */3 * *" # Every 3 days at 9am UTC
+    - cron: "0 9 * * *" # Every 3 days at 9am UTC
   workflow_dispatch: # allows manual trigger from GitHub UI
 
 jobs:
@@ -11,5 +11,6 @@ jobs:
     steps:
       - name: Ping Supabase
         run: |
-          curl -X GET "${{ secrets.VITE_SUPABASE_URL }}/rest/v1/link_clicks?select=id&limit=1" \
-            -H "apikey: ${{ secrets.VITE_SUPABASE_ANON_KEY }}"
+          curl -X GET "${{ secrets.VITE_SUPABASE_URL }}/rest/v1/link_clicks?select=count" \
+            -H "apikey: ${{ secrets.VITE_SUPABASE_ANON_KEY }}" \
+            -H "Prefer: count=exact"
