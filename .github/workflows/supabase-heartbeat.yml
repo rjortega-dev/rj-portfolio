@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Ping Supabase
         run: |
-          curl -X GET "${{ secrets.VITE_SUPABASE_URL }}/rest/v1/link_clicks?select=count" \
+          curl -X PATCH "${{ secrets.VITE_SUPABASE_URL }}/rest/v1/heartbeat?id=eq.1" \
             -H "apikey: ${{ secrets.VITE_SUPABASE_ANON_KEY }}" \
-            -H "Prefer: count=exact"
+            -H "Content-Type: application/json" \
+            -d '{"last_ping": "'"$(date -u +%Y-%m-%dT%H:%M:%SZ)"'"}'
